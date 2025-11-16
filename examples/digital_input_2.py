@@ -1,0 +1,13 @@
+from gpiozero import Button
+from subprocess import check_call
+from signal import pause
+from time import sleep
+
+def shutdown():
+    print("Powering off")
+    sleep(2)
+    check_call(['sudo', 'poweroff'])
+
+shutdown_btn = Button(18, hold_time = 2)
+shutdown_btn.when_held = shutdown
+pause()
